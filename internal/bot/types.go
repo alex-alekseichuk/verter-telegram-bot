@@ -1,23 +1,33 @@
 package bot
 
-type Message struct {
-	Id               int64
-	PlayerId         int64
-	Name             int64
-	Text             string
-	ReplyToMessageID int64
-}
-
-type Command struct {
+type InputMessage struct {
+	Id       int
+	ChatId   int64
 	PlayerId int64
+	Name     string
 	Text     string
 }
 
-type Bot interface {
-	SendPrivate(message Message)
+type OutputMessage struct {
+	ChatId           int64
+	Text             string
+	ReplyToMessageID int
+}
+
+type Command struct {
+	Id       int
+	ChatId   int64
+	PlayerId int64
+	Name     string
+	Cmd      string
 }
 
 type Controller interface {
-	OnMessage(message Message)
+	OnMessage(message InputMessage)
 	OnCommand(command Command)
+}
+
+type Bot interface {
+	Send(message OutputMessage)
+	SetController(c Controller)
 }

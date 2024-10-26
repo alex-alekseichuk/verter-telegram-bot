@@ -1,4 +1,4 @@
 .PHONY: run
 
 run:
-	go run cmd/bangladesh/main.go
+	go run cmd/tg-bot-bangladesh/main.go

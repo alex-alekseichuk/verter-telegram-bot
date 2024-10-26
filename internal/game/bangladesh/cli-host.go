@@ -2,7 +2,7 @@ package bangladesh
 
 import "fmt"
 
-// CliHost implements Host for the Game
+// CliHost implements game/bangladesh/Host
 type CliHost struct {
 	game *Game
 }

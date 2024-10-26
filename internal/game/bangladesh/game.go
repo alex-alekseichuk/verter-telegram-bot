@@ -37,7 +37,7 @@ func (game *Game) Start() {
 		return
 	}
 	game.status = Started
-	game.host.OnStarted("Ok. Let's play the bangladesh game.\nGuess a number?")
+	game.host.OnStarted("Let's play the bangladesh game.\nGuess and post a number?")
 }
 
 func (game *Game) GuessNumber(num int) {
