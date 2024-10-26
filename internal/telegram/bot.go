@@ -51,7 +51,7 @@ func (tgBot *Bot) Run() {
 			cmd := msg.Command()
 			command := bot.Command{
 				Id:       msg.MessageID,
-				ChatId:   msg.Chat.ID,
+				ChatId:   bot.ChatId(msg.Chat.ID),
 				PlayerId: msg.From.ID,
 				Name:     msg.From.UserName,
 				Cmd:      cmd,
@@ -62,7 +62,7 @@ func (tgBot *Bot) Run() {
 
 		message := bot.InputMessage{
 			Id:       msg.MessageID,
-			ChatId:   msg.Chat.ID,
+			ChatId:   bot.ChatId(msg.Chat.ID),
 			PlayerId: msg.From.ID,
 			Name:     msg.From.UserName,
 			Text:     msg.Text,
@@ -72,7 +72,7 @@ func (tgBot *Bot) Run() {
 }
 
 func (tgBot *Bot) Send(message bot.OutputMessage) {
-	tgMsg := tgBotApi.NewMessage(message.ChatId, message.Text)
+	tgMsg := tgBotApi.NewMessage(int64(message.ChatId), message.Text)
 	if message.ReplyToMessageID != 0 {
 		tgMsg.ReplyToMessageID = message.ReplyToMessageID
 	}

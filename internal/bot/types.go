@@ -1,22 +1,24 @@
 package bot
 
+type ChatId int64
+
 type InputMessage struct {
 	Id       int
-	ChatId   int64
+	ChatId   ChatId
 	PlayerId int64
 	Name     string
 	Text     string
 }
 
 type OutputMessage struct {
-	ChatId           int64
+	ChatId           ChatId
 	Text             string
 	ReplyToMessageID int
 }
 
 type Command struct {
 	Id       int
-	ChatId   int64
+	ChatId   ChatId
 	PlayerId int64
 	Name     string
 	Cmd      string

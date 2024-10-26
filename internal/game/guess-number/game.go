@@ -1,4 +1,4 @@
-package gues_number
+package guess_number
 
 import (
 	"fmt"
@@ -7,7 +7,8 @@ import (
 
 type Host interface {
 	OnStarted(message string)
-	OnFinished(message string)
+	OnRightGuess(message string)
+	OnFailedGuess(message string)
 }
 
 type Status int
@@ -47,15 +48,15 @@ func (game *Game) GuessNumber(num int) {
 	if game.status == Started {
 		if num == game.hiddenNumber {
 			game.status = Finished
-			game.host.OnFinished(fmt.Sprintf("Exactly! It's %d", game.hiddenNumber))
+			game.host.OnRightGuess(fmt.Sprintf("Exactly! It's %d", game.hiddenNumber))
 			return
 		}
 		if game.hiddenNumber > num {
-			game.host.OnFinished(fmt.Sprintf("No, it's greater than %d", game.hiddenNumber))
+			game.host.OnFailedGuess(fmt.Sprintf("No, it's greater than %d", num))
 			return
 		}
 		if game.hiddenNumber < num {
-			game.host.OnFinished(fmt.Sprintf("No, it's greater than %d", game.hiddenNumber))
+			game.host.OnFailedGuess(fmt.Sprintf("No, it's less than %d", num))
 			return
 		}
 	}

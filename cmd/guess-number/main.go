@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/alex-alekseichuk/verter-telegram-bot/internal/game/bangladesh"
+	guessNumber "github.com/alex-alekseichuk/verter-telegram-bot/internal/game/guess-number"
 )
 
 func main() {
-	host := bangladesh.NewCliHost()
+	host := guessNumber.NewCliHost().WithNewGame()
 	host.Run()
 }
