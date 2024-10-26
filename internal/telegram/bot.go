@@ -4,6 +4,7 @@ import (
 	bot "github.com/alex-alekseichuk/verter-telegram-bot/internal/bot"
 	tgBotApi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"log"
+	"os"
 )
 
 type Bot struct {
@@ -12,7 +13,9 @@ type Bot struct {
 }
 
 func NewTelegramBot() (*Bot, error) {
-	botApi, err := tgBotApi.NewBotAPI("1287198594:AAETZvG1fcywdHQAm4lAtsb234iUQlhYOwc")
+	token := os.Getenv("TG_BOT_TOKEN")
+
+	botApi, err := tgBotApi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
 		return nil, err
